@@ -1,18 +1,19 @@
 package com.example.sinteapp_3.ui.gallery
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.sinteapp_3.databinding.FragmentGalleryBinding
+import java.sql.Connection
 
 class GalleryFragment : Fragment() {
 
     private var _binding: FragmentGalleryBinding? = null
-
+    public var sajatContext: GalleryFragment = this
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -28,9 +29,9 @@ class GalleryFragment : Fragment() {
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textGallery
-        galleryViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        var imageSlider = binding.imageSlider
+        galleryViewModel.imageList.observe(viewLifecycleOwner) {
+            imageSlider.setImageList(it)
         }
         return root
     }
