@@ -1,31 +1,22 @@
-package com.example.sinteapp_3.ui.gallery
+package com.example.sinteapp_3.ui.faliujsag
 
-import android.app.Application
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.ViewSwitcher.ViewFactory
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
-import com.example.sinteapp_3.NavigationSinteAppActivity
-import com.example.sinteapp_3.databinding.FragmentGalleryBinding
-import java.sql.Connection
+import com.example.sinteapp_3.databinding.FragmentFaliujsagBinding
 
-class GalleryFragment : Fragment() {
+class FaliujsagFragment : Fragment() {
 
-    private var _binding: FragmentGalleryBinding? = null
+    private var _binding: FragmentFaliujsagBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -42,16 +33,16 @@ class GalleryFragment : Fragment() {
         val viewModelFactory=SinteViewModelFactory(context)
 
         val galleryViewModel =
-            ViewModelProvider(this, viewModelFactory)[GalleryViewModel::class.java]
+            ViewModelProvider(this, viewModelFactory)[FaliujsagViewModel::class.java]
 
-        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
+        _binding = FragmentFaliujsagBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         var imageSlider = binding.imageSlider
 
         var playStatusBar = binding.playStopImageView
 
-        galleryViewModel.imageList.observe(viewLifecycleOwner) {
+        galleryViewModel.imageList.observe(viewLifecycleOwner, Observer<ArrayList<SlideModel>>(){
             if(it.isNotEmpty()) {
                 imageSlider.setImageList(it)
                 imageSlider.setItemClickListener(object : ItemClickListener {
@@ -70,7 +61,8 @@ class GalleryFragment : Fragment() {
                     }
                 })
             }
-        }
+        })
+
         return root
     }
 
@@ -82,9 +74,9 @@ class GalleryFragment : Fragment() {
 
 class SinteViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(GalleryViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(FaliujsagViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return GalleryViewModel(context) as T
+            return FaliujsagViewModel(context) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

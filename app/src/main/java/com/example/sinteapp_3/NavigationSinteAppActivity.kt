@@ -1,6 +1,5 @@
 package com.example.sinteapp_3
 
-import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
@@ -18,6 +17,20 @@ class NavigationSinteAppActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityNavigationSinteAppBinding
+
+    //config fájl kiolvasás onCreate közben
+    companion object{
+        private val domain="http://195.228.220.2:65535/"
+        private val scriptFile="script/GetFiles.php"
+
+        fun getDomain():String{
+            return domain
+        }
+
+        fun getScriptFiles():String{
+            return scriptFile
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +52,7 @@ class NavigationSinteAppActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+               R.id.nav_Hireink, R.id.nav_tudastar,  R.id.nav_home
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

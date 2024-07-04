@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_Hireink">
 
     <fragment
         android:id="@+id/nav_home"
@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.sinteapp_3.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_Hireink"
+        android:name="com.example.sinteapp_3.ui.faliujsag.FaliujsagFragment"
+        android:label="@string/menu_hireink"
+        tools:layout="@layout/fragment_faliujsag" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_tudastar"
         android:name="com.example.sinteapp_3.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/menu_tudastar"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
