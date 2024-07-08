@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.sinteapp_3.NavigationSinteAppActivity
 import com.example.sinteapp_3.databinding.FragmentTudastarBinding
 
 class TudastarFragment : Fragment() {
@@ -26,6 +27,8 @@ class TudastarFragment : Fragment() {
 
         _binding = FragmentTudastarBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        val pdfListaKontener=NavigationSinteAppActivity.getTudastarLink("pdf")
 
         /*val pdfViewer = binding.pdfView.initWithUrl(
             url = ,
