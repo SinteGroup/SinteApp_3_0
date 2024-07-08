@@ -2,16 +2,18 @@ package com.example.sinteapp_3
 
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
 import com.example.sinteapp_3.databinding.ActivityNavigationSinteAppBinding
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
+import java.lang.NullPointerException
 
 class NavigationSinteAppActivity : AppCompatActivity() {
 
@@ -21,7 +23,10 @@ class NavigationSinteAppActivity : AppCompatActivity() {
     //config fájl kiolvasás onCreate közben
     companion object{
         private val domain="http://195.228.220.2:65535/"
-        private val scriptFile="script/GetFiles.php"
+        private val scriptFile=domain+"faliujsag/script/getFiles.php"
+        private val faliujsag_link=domain+"faliujsag/"
+        private val tudastar_videok_link= domain+"tudastar/script/getFiles.php?method=tudastar_videok"
+        private val tudastar_dokumentumok_link= domain+"tudastar/script/getFiles.php?method=tudastar_dokumentumok"
 
         fun getDomain():String{
             return domain
@@ -29,6 +34,29 @@ class NavigationSinteAppActivity : AppCompatActivity() {
 
         fun getScriptFiles():String{
             return scriptFile
+        }
+
+        fun getFaliujsagLink():String{
+            return faliujsag_link
+        }
+
+        @Throws(NullPointerException::class)
+        fun getTudastarLink(tudastarDokumetumTipus: String?):List<String>?{
+            var returnTudastarDokumentumLink:List<String>?=null
+
+            if(tudastarDokumetumTipus.equals("videok")) {
+                if (returnTudastarDokumentumLink != null) {
+                    returnTudastarDokumentumLink=tudastar_videok_link.split("\n")
+                }
+
+            }else if(tudastarDokumetumTipus.equals("pdf")){
+
+                if (returnTudastarDokumentumLink != null) {
+                    returnTudastarDokumentumLink=tudastar_dokumentumok_link.split("\n")
+                }
+            }
+
+            return returnTudastarDokumentumLink  //kivételt kezelni, mert nem megfelelő típust adott meg
         }
     }
 
@@ -57,6 +85,11 @@ class NavigationSinteAppActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

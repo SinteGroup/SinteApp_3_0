@@ -56,4 +56,5 @@ dependencies {
     implementation("com.otaliastudios:zoomlayout:1.9.0")
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.google.android.material:material:1.0.0")
+    implementation("io.github.afreakyelf:Pdf-Viewer:2.1.1")
 }

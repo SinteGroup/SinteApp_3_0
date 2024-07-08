@@ -11,6 +11,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.sinteapp_3.NavigationSinteAppActivity
+import com.example.sinteapp_3.NetworkStatusHelper
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
@@ -23,16 +24,22 @@ class FaliujsagViewModel(private val context: Context) : ViewModel() {
 
     private val scheduler = Executors.newScheduledThreadPool(1)
 
+    private val networkStatusHelper = NetworkStatusHelper(context)
+
     init {
-        startRepeatingTask()
+        networkStatusHelper.isConnected.observeForever{isConnected ->
+            if(isConnected){
+                refreshData(5, TimeUnit.MINUTES)
+            }
+        }
     }
 
-    private fun hirdetesek(scripturl: String, domain: String, context: Context){
+    private fun hirdetesek(context: Context){
 
         var returnLista: ArrayList<SlideModel> = ArrayList<SlideModel>()
         var fileokLista=""
-        val domain=NavigationSinteAppActivity.getDomain()
-        val scripturl =domain+scripturl
+        val scripturl = NavigationSinteAppActivity.getScriptFiles()
+        val faliujsagLink = NavigationSinteAppActivity.getFaliujsagLink()
 
         val insertDataQueqe = Volley.newRequestQueue(context)
 
@@ -44,10 +51,10 @@ class FaliujsagViewModel(private val context: Context) : ViewModel() {
                 val fileTempCsakhogyLegyen=fileokLista.split("\n")
 
                 for (fileBelsoTempCsakhogyBonyiLegyen in fileTempCsakhogyLegyen) {
-                    Log.d("Szerver_Belso", domain + "faliujsag/$fileBelsoTempCsakhogyBonyiLegyen")
+                    Log.d("Szerver_Belso",faliujsagLink+fileBelsoTempCsakhogyBonyiLegyen)
                     returnLista.add(
                         SlideModel(
-                            domain+"faliujsag/$fileBelsoTempCsakhogyBonyiLegyen",
+                            faliujsagLink+fileBelsoTempCsakhogyBonyiLegyen,
                             "Nem kell title"
                         )
                     )
@@ -61,16 +68,15 @@ class FaliujsagViewModel(private val context: Context) : ViewModel() {
         insertDataQueqe.add(insertDataStringRequest)
     }
 
-    private fun startRepeatingTask() {
-        scheduler.scheduleAtFixedRate({
-            hirdetesek(NavigationSinteAppActivity.getScriptFiles(), NavigationSinteAppActivity.getDomain(), context)
-        }, 0, 5, TimeUnit.MINUTES) // 0 kezdeti késleltetés, 1 perc intervallum
-    }
-
     override fun onCleared() {
         super.onCleared()
         scheduler.shutdown()
     }
 
+    fun refreshData(periodus: Long, lepes: TimeUnit){
+        scheduler.scheduleAtFixedRate({
+            hirdetesek(context)
+        }, 0, periodus,lepes) // 0 kezdeti késleltetés, 1 perc intervallum
+    }
 }
 

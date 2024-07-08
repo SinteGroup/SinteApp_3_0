@@ -3,6 +3,7 @@ package com.example.sinteapp_3.ui.faliujsag
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.sinteapp_3.databinding.FragmentFaliujsagBinding
+import java.util.concurrent.TimeUnit
 
 class FaliujsagFragment : Fragment() {
 
@@ -21,6 +23,8 @@ class FaliujsagFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private lateinit var galleryViewModel: FaliujsagViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +36,7 @@ class FaliujsagFragment : Fragment() {
 
         val viewModelFactory=SinteViewModelFactory(context)
 
-        val galleryViewModel =
+        galleryViewModel =
             ViewModelProvider(this, viewModelFactory)[FaliujsagViewModel::class.java]
 
         _binding = FragmentFaliujsagBinding.inflate(inflater, container, false)
@@ -42,7 +46,7 @@ class FaliujsagFragment : Fragment() {
 
         var playStatusBar = binding.playStopImageView
 
-        galleryViewModel.imageList.observe(viewLifecycleOwner, Observer<ArrayList<SlideModel>>(){
+        galleryViewModel!!.imageList.observe(viewLifecycleOwner, Observer<ArrayList<SlideModel>>(){
             if(it.isNotEmpty()) {
                 imageSlider.setImageList(it)
                 imageSlider.setItemClickListener(object : ItemClickListener {
@@ -64,6 +68,13 @@ class FaliujsagFragment : Fragment() {
         })
 
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("Vissza", "Visszatért")
+        galleryViewModel?.refreshData(5, TimeUnit.MINUTES)
+        Log.d("App_licycle", "Resume")
     }
 
     override fun onDestroyView() {
