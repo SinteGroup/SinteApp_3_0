@@ -2,7 +2,6 @@ package com.example.sinteapp_3
 
 import android.os.Bundle
 import android.view.Menu
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -23,38 +22,38 @@ class NavigationSinteAppActivity : AppCompatActivity() {
     //config fájl kiolvasás onCreate közben
     companion object{
         private val domain="http://195.228.220.2:65535/"
-        private val scriptFile=domain+"faliujsag/script/getFiles.php"
-        private val faliujsag_link=domain+"faliujsag/"
+        private val tudastar_dokumentum_mappa= domain+"tudastar/dokumentumok/"
+        private val tudastar_videok_mappa= domain+"tudastar/videok/"
+        private val faliujsagScriptFile=domain+"faliujsag/script/getFiles.php"
+        private val faliujsag_mappa=domain+"faliujsag/"
         private val tudastar_videok_link= domain+"tudastar/script/getFiles.php?method=tudastar_videok"
         private val tudastar_dokumentumok_link= domain+"tudastar/script/getFiles.php?method=tudastar_dokumentumok"
 
-        fun getDomain():String{
-            return domain
+        fun getFaliujsagScriptFiles():String{
+            return faliujsagScriptFile
         }
 
-        fun getScriptFiles():String{
-            return scriptFile
+        fun getFaliujsagMappa():String{
+            return faliujsag_mappa
         }
 
-        fun getFaliujsagLink():String{
-            return faliujsag_link
+        fun getTudastar_Dokumentum_mappa(): String{
+            return tudastar_dokumentum_mappa
+        }
+
+        fun getTudastar_videok_mappa():String{
+            return tudastar_videok_mappa
         }
 
         @Throws(NullPointerException::class)
-        fun getTudastarLink(tudastarDokumetumTipus: String?):List<String>?{
-            var returnTudastarDokumentumLink:List<String>?=null
+        fun getTudastarLink(tudastarDokumetumTipus: String?): String? {
+            var returnTudastarDokumentumLink: String?=null
 
-            if(tudastarDokumetumTipus.equals("videok")) {
-                if (returnTudastarDokumentumLink != null) {
-                    returnTudastarDokumentumLink=tudastar_videok_link.split("\n")
-                }
+            if(tudastarDokumetumTipus.equals("pdf"))
+                returnTudastarDokumentumLink= tudastar_dokumentumok_link
 
-            }else if(tudastarDokumetumTipus.equals("pdf")){
-
-                if (returnTudastarDokumentumLink != null) {
-                    returnTudastarDokumentumLink=tudastar_dokumentumok_link.split("\n")
-                }
-            }
+            if (tudastarDokumetumTipus.equals("videok"))
+                returnTudastarDokumentumLink= tudastar_videok_link
 
             return returnTudastarDokumentumLink  //kivételt kezelni, mert nem megfelelő típust adott meg
         }

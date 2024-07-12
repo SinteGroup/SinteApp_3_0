@@ -38,8 +38,8 @@ class FaliujsagViewModel(private val context: Context) : ViewModel() {
 
         var returnLista: ArrayList<SlideModel> = ArrayList<SlideModel>()
         var fileokLista=""
-        val scripturl = NavigationSinteAppActivity.getScriptFiles()
-        val faliujsagLink = NavigationSinteAppActivity.getFaliujsagLink()
+        val scripturl = NavigationSinteAppActivity.getFaliujsagScriptFiles()
+        val faliujsagLink = NavigationSinteAppActivity.getFaliujsagMappa()
 
         val insertDataQueqe = Volley.newRequestQueue(context)
 

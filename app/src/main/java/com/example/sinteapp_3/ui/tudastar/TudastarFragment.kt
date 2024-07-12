@@ -1,10 +1,12 @@
-package com.example.sinteapp_3.ui.slideshow
+package com.example.sinteapp_3.ui.tudastar
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.sinteapp_3.NavigationSinteAppActivity
 import com.example.sinteapp_3.databinding.FragmentTudastarBinding
@@ -22,21 +24,27 @@ class TudastarFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val slideshowViewModel =
-            ViewModelProvider(this).get(TudastarViewModel::class.java)
+
+        val context=requireContext()
+
+        val tudastarViewModelFactory= TudastarViewModelFactory(context, arrayListOf("pdf", "videok"))
+
+        val tudastarViewModel =
+            ViewModelProvider(this, tudastarViewModelFactory).get(TudastarViewModel::class.java)
 
         _binding = FragmentTudastarBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val pdfListaKontener=NavigationSinteAppActivity.getTudastarLink("pdf")
+        tudastarViewModel.tudastarLista.observe(viewLifecycleOwner, Observer<ArrayList<List<String>>>(){
+            Log.d("TudastarFragment_size", it.size.toString())
+            for (elements in it) {
+                Log.d("TudastarFragment_lista_hatar", "----------------------")
+                for(elem in elements){
+                    Log.d("TudastarFragment_log_elements", NavigationSinteAppActivity.getTudastar_Dokumentum_mappa()+elem)
+                }
+            }
+        })
 
-        /*val pdfViewer = binding.pdfView.initWithUrl(
-            url = ,
-            lifecycleCoroutineScope = lifecycleScope,
-            lifecycle = lifecycle)*/
-        slideshowViewModel.text.observe(viewLifecycleOwner) {
-
-        }
         return root
     }
 

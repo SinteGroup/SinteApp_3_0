@@ -4,12 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.slideshow.TudastarFragment">
+    tools:context=".ui.tudastar.TudastarFragment">
 
-    <com.rajat.pdfviewer.PdfRendererView
-        android:id="@+id/pdfView"
+    <com.sysdata.widget.accordion.FancyAccordionView
+        android:id="@+id/fancy_accordion_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:pdfView_divider="@drawable/pdf_viewer_divider"
-        app:pdfView_showDivider="false" />
+        android:clipToPadding="false"
+        android:descendantFocusability="beforeDescendants"
+        android:fadingEdgeLength="0dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical"
+        android:splitMotionEvents="false"
+        tools:listitem="@layout/sample_layout_collapsed"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
