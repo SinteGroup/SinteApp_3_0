@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.sinteapp_3.NavigationSinteAppActivity
 import com.example.sinteapp_3.databinding.FragmentTudastarBinding
+import com.google.android.material.tabs.TabLayoutMediator
 
 class TudastarFragment : Fragment() {
 
@@ -46,6 +47,23 @@ class TudastarFragment : Fragment() {
         })
 
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val tabNeve= listOf("Videók", "Dokumentumok")
+
+        val adapter = ViewPagerAdapter(this)
+
+        val viewPager=binding.viewPager
+        viewPager.adapter = adapter
+
+        val tabLayout=binding.tabLayout
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = "${(tabNeve[position])}"
+        }.attach()
     }
 
     override fun onDestroyView() {

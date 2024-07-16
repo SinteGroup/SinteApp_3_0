@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.viewpager)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -57,4 +58,6 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.google.android.material:material:1.0.0")
     implementation("io.github.afreakyelf:Pdf-Viewer:2.1.1")
+    implementation("it.sysdata.mobile:fancyaccordionview:1.0.1")
+    implementation("com.github.halilozercan:BetterVideoPlayer:kotlin-SNAPSHOT")
 }
