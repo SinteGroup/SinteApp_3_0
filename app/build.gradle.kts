@@ -58,6 +58,6 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.google.android.material:material:1.0.0")
     implementation("io.github.afreakyelf:Pdf-Viewer:2.1.1")
-    implementation("it.sysdata.mobile:fancyaccordionview:1.0.1")
-    implementation("com.github.halilozercan:BetterVideoPlayer:kotlin-SNAPSHOT")
+    implementation("com.ramotion.foldingcell:folding-cell:1.2.3")
+
 }
