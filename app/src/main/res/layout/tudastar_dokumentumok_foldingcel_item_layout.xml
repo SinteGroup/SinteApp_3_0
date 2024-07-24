@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:folding-cell="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.ramotion.foldingcell.FoldingCell
+        android:id="@+id/dokumentumok_folding_cell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="true"
+        android:clipToPadding="true"
+        android:padding="16dp"
+        android:textAlignment="center"
+        android:gravity="center"
+        folding-cell:animationDuration="1000"
+        folding-cell:backSideColor="@color/zold"
+        folding-cell:additionalFlipsCount="3"
+        folding-cell:cameraHeight="5000"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:id="@+id/tudastar_dokumentumok_cell_content_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    background="@android:color/holo_blue_bright"
+                    android:src="@drawable/hireink_ikon_svg"></ImageView>
+
+                <com.rajat.pdfviewer.PdfRendererView
+                    android:id="@+id/tudastar_dokumentumok_pdfView"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp" />
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/tudastar_dokumentumok_cell_title_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            tools:ignore="MissingConstraints">
+            <TextView
+                android:id="@+id/tudastar_dokumentumok_cell_title_view_TextView"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:textAlignment="center"
+
+                android:text="Title"
+                android:background="@android:color/holo_blue_bright" />
+        </LinearLayout>
+
+    </com.ramotion.foldingcell.FoldingCell>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

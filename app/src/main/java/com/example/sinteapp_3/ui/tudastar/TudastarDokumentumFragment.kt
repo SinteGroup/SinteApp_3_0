@@ -1,13 +1,14 @@
 package com.example.sinteapp_3.ui.tudastar
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.sinteapp_3.R
-import com.ramotion.foldingcell.FoldingCell
+import com.example.sinteapp_3.foldingCellHelper
 
 class TudastarDokumentumFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,15 +22,16 @@ class TudastarDokumentumFragment : Fragment() {
         // Inflate the layout for this fragment
         val root= inflater.inflate(R.layout.fragment_tudastar_dokumentum, container, false)
 
-        val fc: FoldingCell = root.findViewById(R.id.folding_cell)
+        val dataList = listOf(
+            foldingCellHelper.TudastarDokumentumDataModel("Első elem szövege"),
+            foldingCellHelper.TudastarDokumentumDataModel("Második elem szövege"),
+            foldingCellHelper.TudastarDokumentumDataModel("Harmadik elem szövege"))
 
-        /*fc.initialize(1000, Color.DKGRAY, 2);
+        val recyclerView: RecyclerView = root.findViewById(R.id.tudastar_recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = foldingCellHelper.FoldingCellAdapter(dataList)
 
-        fc.initialize(30, 1000, Color.DKGRAY, 2);*/
-
-        fc.setOnClickListener {
-            fc.toggle(false)
-        }
         return root
     }
 }
+
