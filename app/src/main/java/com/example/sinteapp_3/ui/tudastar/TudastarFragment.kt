@@ -52,7 +52,7 @@ class TudastarFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val tabNeve= listOf("Videók", "Dokumentumok")
+        val tabNeve= listOf("Dokumentumok", "Videók")
 
         val adapter = ViewPagerAdapter(this)
 

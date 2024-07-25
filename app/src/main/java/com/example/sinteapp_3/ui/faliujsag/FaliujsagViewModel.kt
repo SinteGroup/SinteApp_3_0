@@ -45,7 +45,7 @@ class FaliujsagViewModel(private val context: Context) : ViewModel() {
 
         val insertDataStringRequest= StringRequest(
             Request.Method.GET, scripturl,
-            Response.Listener<String> { response ->
+            { response ->
                 Log.d("Volley_response", response)
                 fileokLista = response
                 val fileTempCsakhogyLegyen=fileokLista.split("\n")
@@ -61,7 +61,7 @@ class FaliujsagViewModel(private val context: Context) : ViewModel() {
                 }
                 _imageList.value=returnLista
             },
-            Response.ErrorListener {
+            {
                     error->
                 Log.d("Volley_error", error.message.toString())
             })

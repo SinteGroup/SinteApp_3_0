@@ -14,40 +14,29 @@
         android:padding="16dp"
         android:textAlignment="center"
         android:gravity="center"
-        folding-cell:animationDuration="1000"
+        folding-cell:animationDuration="100"
         folding-cell:backSideColor="@color/zold"
         folding-cell:additionalFlipsCount="3"
-        folding-cell:cameraHeight="5000"
-        tools:ignore="MissingConstraints">
+        folding-cell:cameraHeight="5000">
 
         <LinearLayout
             android:id="@+id/tudastar_dokumentumok_cell_content_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone"
-            tools:ignore="MissingConstraints">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    background="@android:color/holo_blue_bright"
-                    android:src="@drawable/hireink_ikon_svg"></ImageView>
-
-                <com.rajat.pdfviewer.PdfRendererView
-                    android:id="@+id/tudastar_dokumentumok_pdfView"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp" />
-
-            </LinearLayout>
+            android:visibility="gone">
+            <WebView
+                android:id="@+id/tudastar_pdfWebView"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"/>
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:id="@+id/tudastar_dokumentumok_cell_title_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            tools:ignore="MissingConstraints">
+            android:textAlignment="center">
             <TextView
                 android:id="@+id/tudastar_dokumentumok_cell_title_view_TextView"
                 android:layout_width="match_parent"

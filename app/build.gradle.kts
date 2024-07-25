@@ -53,11 +53,9 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
-    implementation("com.otaliastudios:zoomlayout:1.9.0")
-    implementation("com.android.volley:volley:1.2.1")
-    implementation("com.google.android.material:material:1.0.0")
-    implementation("io.github.afreakyelf:Pdf-Viewer:2.1.1")
-    implementation("com.ramotion.foldingcell:folding-cell:1.2.3")
-
+    implementation(libs.imageslideshow)
+    implementation(libs.zoomlayout)
+    implementation(libs.volley)
+    implementation(libs.material.v100)
+    implementation(libs.folding.cell)
 }
