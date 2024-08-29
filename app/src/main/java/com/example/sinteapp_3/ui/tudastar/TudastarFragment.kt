@@ -26,25 +26,8 @@ class TudastarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val context=requireContext()
-
-        val tudastarViewModelFactory= TudastarViewModelFactory(context, arrayListOf("pdf", "videok"))
-
-        val tudastarViewModel =
-            ViewModelProvider(this, tudastarViewModelFactory).get(TudastarViewModel::class.java)
-
         _binding = FragmentTudastarBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        tudastarViewModel.tudastarLista.observe(viewLifecycleOwner, Observer<ArrayList<List<String>>>(){
-            Log.d("TudastarFragment_size", it.size.toString())
-            for (elements in it) {
-                Log.d("TudastarFragment_lista_hatar", "----------------------")
-                for(elem in elements){
-                    Log.d("TudastarFragment_log_elements", NavigationSinteAppActivity.getTudastar_Dokumentum_mappa()+elem)
-                }
-            }
-        })
 
         return root
     }

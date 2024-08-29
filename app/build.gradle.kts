@@ -58,4 +58,5 @@ dependencies {
     implementation(libs.volley)
     implementation(libs.material.v100)
     implementation(libs.folding.cell)
+    implementation(libs.pdf.viewer.v211)
 }

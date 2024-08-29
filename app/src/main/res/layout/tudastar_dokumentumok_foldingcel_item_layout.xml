@@ -6,47 +6,54 @@
     android:layout_height="wrap_content">
 
     <com.ramotion.foldingcell.FoldingCell
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:folding-cell="http://schemas.android.com/apk/res-auto"
         android:id="@+id/dokumentumok_folding_cell"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipChildren="true"
-        android:clipToPadding="true"
-        android:padding="16dp"
-        android:textAlignment="center"
-        android:gravity="center"
-        folding-cell:animationDuration="100"
-        folding-cell:backSideColor="@color/zold"
-        folding-cell:additionalFlipsCount="3"
-        folding-cell:cameraHeight="5000">
-
-        <LinearLayout
-            android:id="@+id/tudastar_dokumentumok_cell_content_view"
+        android:layout_height="wrap_content">
+        ​
+        <FrameLayout
+            android:id="@+id/cell_content_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-            <WebView
-                android:id="@+id/tudastar_pdfWebView"
+            android:background="@android:color/holo_green_dark"
+            android:visibility="gone"
+            folding-cell:animationDuration="1000"
+            folding-cell:additionalFlipsCount="3"
+            folding-cell:cameraHeight="5030">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="500dp"/>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:id="@+id/tudastar_dokumentumok_cell_title_view"
+                <TextView
+                    android:id="@+id/tudastar_dokumentumok_description_view"
+                    android:text="Content"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp" />
+
+                <com.rajat.pdfviewer.PdfRendererView
+                    android:id="@+id/pdfView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </FrameLayout>
+        ​
+        <FrameLayout
+            android:id="@+id/cell_title_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center">
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/tudastar_dokumentumok_cell_title_view_TextView"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:textColor="@color/black"
+                android:text="Tudástar dokumentumok"
                 android:textAlignment="center"
-
-                android:text="Title"
-                android:background="@android:color/holo_blue_bright" />
-        </LinearLayout>
-
+                android:gravity="center"
+                android:background="@android:color/holo_blue_dark" />
+        </FrameLayout>
+        ​
     </com.ramotion.foldingcell.FoldingCell>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
