@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sinteapp_3.NavigationSinteAppActivity
 import com.example.sinteapp_3.R
 import com.example.sinteapp_3.foldingCellHelper
-import com.rajat.pdfviewer.PdfViewerActivity
-import com.rajat.pdfviewer.util.saveTo
 
 
 class TudastarDokumentumFragment : Fragment() {
@@ -30,14 +28,6 @@ class TudastarDokumentumFragment : Fragment() {
         val root= inflater.inflate(R.layout.fragment_tudastar_dokumentum, container, false)
 
         tartalomGyartas(root, "pdf")
-
-        PdfViewerActivity.launchPdfFromUrl(
-            context = requireContext(),
-            pdfUrl  = "http://192.168.73.203/tudastar/dokumentumok/Szkennelés_leírás.pdf",
-            pdfTitle = "PDF Title",
-            saveTo = saveTo.ASK_EVERYTIME,
-            enableDownload = true
-        )
 
         return root
     }
@@ -58,9 +48,10 @@ class TudastarDokumentumFragment : Fragment() {
                 Log.d("TudastarFragment_lista_hatar", "----------------------")
                 for(elem in elements){
                     Log.d("TudastarFragment_log_elements", NavigationSinteAppActivity.getTudastar_Dokumentum_mappa()+elem)
-                    dataTemp.add(foldingCellHelper.TudastarDokumentumDataModel(elem))
+                    dataTemp.add(foldingCellHelper.TudastarDokumentumDataModel(elem, root))
                 }
             }
+
             val recyclerView: RecyclerView = root.findViewById(R.id.tudastar_recycler_view)
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = foldingCellHelper.FoldingCellAdapter(dataTemp)

@@ -11,7 +11,6 @@
         android:id="@+id/dokumentumok_folding_cell"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        ​
         <FrameLayout
             android:id="@+id/cell_content_view"
             android:layout_width="match_parent"
@@ -21,24 +20,20 @@
             folding-cell:animationDuration="1000"
             folding-cell:additionalFlipsCount="3"
             folding-cell:cameraHeight="5030">
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical">-->
+                <WebView
+                    android:id="@+id/tudastar_dokumentumok_cell_title_view_WebView"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center"
+                    android:clickable="true"/>
 
-                <TextView
-                    android:id="@+id/tudastar_dokumentumok_description_view"
-                    android:text="Content"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp" />
-
-                <com.rajat.pdfviewer.PdfRendererView
-                    android:id="@+id/pdfView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
+            <!--</LinearLayout>-->
         </FrameLayout>
-        ​
+
         <FrameLayout
             android:id="@+id/cell_title_view"
             android:layout_width="match_parent"
@@ -52,8 +47,9 @@
                 android:textAlignment="center"
                 android:gravity="center"
                 android:background="@android:color/holo_blue_dark" />
+
         </FrameLayout>
-        ​
+
     </com.ramotion.foldingcell.FoldingCell>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
